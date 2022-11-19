@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import br.floreia.parking.controller.dto.ParkingCreateDTO;
 import br.floreia.parking.controller.dto.ParkingDTO;
 import br.floreia.parking.model.Parking;
 
@@ -22,4 +23,11 @@ public class ParkingMapper {
         return parkingList.stream().map(this::toParkingDTO).collect(Collectors.toList());
     }
 
+    public Parking toParking(ParkingDTO dto) {
+      return MODEL_MAPPER.map(dto, Parking.class);
+    }
+
+    public Parking toParkingCreate(ParkingCreateDTO dto) {
+      return MODEL_MAPPER.map(dto, Parking.class);
+    }
 }
