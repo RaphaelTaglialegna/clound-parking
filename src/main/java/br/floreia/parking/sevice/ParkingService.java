@@ -18,12 +18,6 @@ public class ParkingService {
   
   private static Map<String, Parking> parkingMap = new HashMap();
 
-  static {
-    var id  = getUUID(); 
-    Parking parking = new Parking(id, "DMS-111", "SC", "CELTA", "PRETO");
-    parkingMap.put(id, parking);
-  }
-
   private static String getUUID() {
     return UUID.randomUUID().toString().replace("-", "");
   }
@@ -58,5 +52,9 @@ public class ParkingService {
     parking.setColor(parkingCreate.getColor());
     parkingMap.replace(id, parking);
     return parking;
+  }
+
+  public Parking exit(String id) {
+    return null;
   }
 }

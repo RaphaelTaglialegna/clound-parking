@@ -32,6 +32,7 @@
 			<scope>test</scope>
 		</dependency>
 
+    <!-- Swagger -->
     <dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger2</artifactId>
@@ -42,18 +43,29 @@
       <artifactId>springfox-swagger-ui</artifactId>
       <version>${springfox-swagger.version}</version>
      </dependency>
-
+      
+     <!-- Mapper -->
     	<dependency>
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
 			<version>2.3.5</version>
 		</dependency>
     <dependency>
+
+      <!-- Auto reload Devtools runtime -->
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
       <scope>runtime</scope>
       <optional>true</optional>
     </dependency>
+    
+    <!-- Libary de test-->
+    <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>rest-assured</artifactId>
+        <scope>test</scope>
+    </dependency>
+
 	</dependencies>
   
 

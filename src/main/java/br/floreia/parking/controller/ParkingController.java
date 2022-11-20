@@ -71,7 +71,14 @@ public class ParkingController {
   @DeleteMapping("/{id}")
   @ApiOperation("Delete a parking by id")
   public ResponseEntity delete(@PathVariable String id) {
-    parkingService.delete(id); 
+    parkingService.delete(id);
     return ResponseEntity.noContent().build();
+  }
+  
+  @PostMapping("/{id}")
+  @ApiOperation("Exit a parking")
+  public ResponseEntity<ParkingDTO> exit(@PathVariable String id) {
+    Parking parking = parkingService.exit(id);
+    return ResponseEntity.ok(parkingMapper.toParkingDTO(parking));
   }
 }
