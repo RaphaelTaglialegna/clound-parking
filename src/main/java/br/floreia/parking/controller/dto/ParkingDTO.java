@@ -16,7 +16,7 @@ public class ParkingDTO {
   @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
   private LocalDateTime entryDate;
   @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-  private LocalDateTime exiteDate;
+  private LocalDateTime exitDate;
   private Double bill;
 
   public String getId() {
@@ -67,12 +67,12 @@ public class ParkingDTO {
     this.entryDate = entryDate;
   }
 
-  public LocalDateTime getExiteDate() {
-    return this.exiteDate;
+  public LocalDateTime getExitDate() {
+    return this.exitDate;
   }
 
-  public void setExiteDate(LocalDateTime exiteDate) {
-    this.exiteDate = exiteDate;
+  public void setExitDate(LocalDateTime exitDate) {
+    this.exitDate = exitDate;
   }
 
   public Double getBill() {

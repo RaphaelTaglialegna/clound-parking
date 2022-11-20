@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
 import br.floreia.parking.controller.dto.ParkingCreateDTO;
-import ch.qos.logback.core.boolex.Matcher;
 import io.restassured.RestAssured;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
