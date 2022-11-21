@@ -1,6 +1,11 @@
 package br.floreia.parking.controller.test;
 
+import java.time.Duration;
+import java.time.temporal.TemporalUnit;
+
 import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.containers.wait.strategy.Wait;
+import org.testcontainers.utility.DockerImageName;
 
 public abstract class AbstractContainerBase {
 
@@ -10,6 +15,7 @@ public abstract class AbstractContainerBase {
     private static final String POSTGRESQL_DATABASE = "parking";
 
     protected static final PostgreSQLContainer CONTAINER;
+    private static final TemporalUnit SECONDS = null;
 
     static {
         DockerImageName imgName = DockerImageName.parse(DOCKER_IMAGE_NAME).asCompatibleSubstituteFor("postgres");
