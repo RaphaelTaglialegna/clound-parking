@@ -1,7 +1,9 @@
 package br.floreia.parking.config;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +15,13 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import springfox.documentation.service.ApiKey;
+import springfox.documentation.service.AuthorizationScope;
+import springfox.documentation.service.BasicAuth;
+import springfox.documentation.service.SecurityReference;
+import springfox.documentation.service.SecurityScheme;
+import springfox.documentation.spi.service.contexts.SecurityContext;
+
 
 @Configuration
 @EnableSwagger2
@@ -41,17 +50,43 @@ public class SwaggerConfig {
     }
     @Bean
     public Docket api() {
-        Docket docket = new Docket(DocumentationType.SWAGGER_2);
+      Docket docket = new Docket(DocumentationType.SWAGGER_2);
 
-        docket
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("br.floreia.parking"))
-                .paths(PathSelectors.any())
-                .build()
-                .apiInfo(this.informacoesApi().build())
-                .consumes(new HashSet<String>(Arrays.asList("application/json")))
-                .produces(new HashSet<String>(Arrays.asList("application/json")));
+      docket
+          .select()
+          .apis(RequestHandlerSelectors.basePackage("br.floreia.parking"))
+          .paths(PathSelectors.any())
+          .build()
+          .apiInfo(this.informacoesApi().build())
+          .consumes(new HashSet<String>(Arrays.asList("application/json")))
+          .produces(new HashSet<String>(Arrays.asList("application/json")))
+          .securityContexts(Arrays.asList(actuatorSecurityContext()))
+          .securitySchemes(Arrays.asList(basicAuthScheme()));
 
-        return docket;
+      return docket;
     }
+    private SecurityContext actuatorSecurityContext() {
+        return SecurityContext.builder()
+                .securityReferences(Arrays.asList(basicAuthReference()))
+                .build();
+    }
+
+    private SecurityScheme basicAuthScheme() {
+        return new BasicAuth("basicAuth");
+    }
+
+    private SecurityReference basicAuthReference() {
+        return new SecurityReference("basicAuth", new AuthorizationScope[0]);
+    }
+
+    private List<SecurityScheme> basicScheme() {
+        List<SecurityScheme> schemeList = new ArrayList();
+        schemeList.add(new BasicAuth("basicAuth"));
+        return schemeList;
+    }
+
+    private ApiKey apiKey() {
+        return new ApiKey("apiKey", "Authorization", "header");
+    }
+    
 }
